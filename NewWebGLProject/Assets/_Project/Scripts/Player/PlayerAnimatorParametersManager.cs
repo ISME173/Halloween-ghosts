@@ -1,18 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerAnimatorParametersManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [field: Header("Player animator parameters name"), Space]
+    [field: SerializeField] public string Idle { get; private set; }
+    [field: SerializeField] public string Died { get; private set; }
 }

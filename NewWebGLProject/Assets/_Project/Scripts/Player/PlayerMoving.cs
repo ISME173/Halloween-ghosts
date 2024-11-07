@@ -3,7 +3,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerMoving : MonoBehaviour
 {
-    [SerializeField] private DynamicJoystick _playerJoystick;
+    [SerializeField] private Joystick _playerJoystick;
     [SerializeField] private float _speed;
 
     private Rigidbody _playerRigidbody;

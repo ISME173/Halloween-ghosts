@@ -17,8 +17,4 @@ public class Idle : StateMachineBehaviour
             animator.SetBool(_animatorParametersManager.Idle, false);
         }
     }
-    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-
-    }
 }

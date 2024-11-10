@@ -7,18 +7,27 @@ public class PlayerMoving : MonoBehaviour
     [SerializeField] private float _speed;
 
     private Rigidbody _playerRigidbody;
+    private PlayerAttackZone _playerAttackZone;
 
     public Vector3 TargetVelosity { get; private set; }
 
-    private void Awake() => _playerRigidbody = GetComponent<Rigidbody>();
+    private void Awake()
+    {
+        _playerRigidbody = GetComponent<Rigidbody>();
+        _playerAttackZone = FindAnyObjectByType<PlayerAttackZone>();
+    }
     private void FixedUpdate()
     {
         _playerRigidbody.velocity = new Vector3(_playerJoystick.Horizontal * _speed, _playerRigidbody.velocity.y, _playerJoystick.Vertical * _speed);
         TargetVelosity = _playerRigidbody.velocity;
 
-        if (_playerJoystick.Horizontal != 0 || _playerJoystick.Vertical != 0)
+        if ((_playerJoystick.Horizontal != 0 || _playerJoystick.Vertical != 0) && _playerAttackZone.ClosestEnemy == null)
         {
             transform.rotation = Quaternion.LookRotation(new Vector3(TargetVelosity.x, 0, TargetVelosity.z));
+        }
+        else if (_playerAttackZone.ClosestEnemy != null)
+        {
+            transform.LookAt(_playerAttackZone.ClosestEnemy.transform.position);
         }
     }
 }

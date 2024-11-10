@@ -40,6 +40,7 @@ public class PlayerCameraAdditionalTriggera : MonoBehaviour
                 _returnCameraInDefaultPositionTimer = StartCoroutine(ReturnCameraInDefaultPositionTimer());
 
                 Destroy(_triggerObject);
+                _triggerObject = null;
                 StopCoroutine(_checkSphereInOntriggerExit);
             }
 

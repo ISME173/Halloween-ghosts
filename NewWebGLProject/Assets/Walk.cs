@@ -17,8 +17,4 @@ public class Walk : StateMachineBehaviour
             animator.SetBool(_playerAnimatorParametersManager.Idle, true);
         }
     }
-    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-
-    }
 }

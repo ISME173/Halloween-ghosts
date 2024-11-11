@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [RequireComponent(typeof(SphereCollider))]
@@ -7,7 +8,7 @@ public class PlayerAttackZone : MonoBehaviour
 {
     private List<Enemy> _enemyInAttackZone = new List<Enemy>();
 
-    public event Action AddEnemyInListClosestEnemy, RemoveEnemyInListClosestEnemy;
+    public event Action AddEnemyInList;
 
     public Enemy ClosestEnemy { get; private set; } = null;
 
@@ -18,10 +19,14 @@ public class PlayerAttackZone : MonoBehaviour
         if (other.TryGetComponent(out Enemy enemy))
         {
             _enemyInAttackZone.Add(enemy);
-            ClosestEnemy = SearchClosestEnemyInAttackZone();
-
-            if (AddEnemyInListClosestEnemy != null)
-                AddEnemyInListClosestEnemy.Invoke();
+            GetClosestEnemyInAttackZone();
+        }
+    }
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.TryGetComponent(out Enemy enemy))
+        {
+            GetClosestEnemyInAttackZone();
         }
     }
     private void OnTriggerExit(Collider other)
@@ -29,41 +34,20 @@ public class PlayerAttackZone : MonoBehaviour
         if (other.TryGetComponent(out Enemy enemy))
         {
             _enemyInAttackZone.Remove(enemy);
-            ClosestEnemy = SearchClosestEnemyInAttackZone();
-
-            if (ClosestEnemy != null && RemoveEnemyInListClosestEnemy != null)
-                RemoveEnemyInListClosestEnemy.Invoke();
-                
+            GetClosestEnemyInAttackZone();
         }
     }
-
-    private Enemy SearchClosestEnemyInAttackZone()
+    private void GetClosestEnemyInAttackZone()
     {
-        float minDistanceToEnemy = 0;
-        Enemy closestEnemy = null;
-
-        for (int i = 0; i < _enemyInAttackZone.Count; i++)
+        if (_enemyInAttackZone.Count > 0)
         {
-            //if (_enemyInAttackZone[i] == null)
-            //{
-            //    _enemyInAttackZone.RemoveAt(i);
-            //    continue;
-            //}
+            if (_enemyInAttackZone.First() == null)
+                _enemyInAttackZone.Remove(_enemyInAttackZone.First());
 
-            if (i == 0)
-            {
-                minDistanceToEnemy = Vector3.Distance(transform.position, _enemyInAttackZone[i].transform.position);
-                closestEnemy = _enemyInAttackZone[i];
-                continue;
-            }
+            ClosestEnemy = _enemyInAttackZone.First();
 
-            float distanceToEnemy = Vector3.Distance(transform.position, _enemyInAttackZone[i].transform.position);
-            if (distanceToEnemy < minDistanceToEnemy)
-            { 
-                minDistanceToEnemy = distanceToEnemy;
-                closestEnemy = _enemyInAttackZone[i];
-            }
+            if (AddEnemyInList != null)
+                AddEnemyInList.Invoke();
         }
-        return closestEnemy;
     }
 }

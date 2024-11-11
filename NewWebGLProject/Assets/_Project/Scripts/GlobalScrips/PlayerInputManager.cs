@@ -14,7 +14,7 @@ public class PlayerInputManager : MonoBehaviour
         {
             if (_instance == null)
             {
-                _instance = FindObjectOfType<PlayerInputManager>();
+                _instance = FindAnyObjectByType<PlayerInputManager>();
 
                 if (_instance == null)
                 {

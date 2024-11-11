@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class PlayerCameraMoving : MonoBehaviour
@@ -7,7 +6,8 @@ public class PlayerCameraMoving : MonoBehaviour
     [SerializeField] private float _cameraMovingToPlayerSpeed;
 
     [SerializeField] private float _defaultMaxCameraPositionY;
-    [SerializeField] private float _isTriggerMinCameraPositionY = 4f;
+    [SerializeField] private float _isTriggerMinCameraPositionY = 4;
+    [SerializeField] private float _distanceCameraToPlayerOnForward = 5;
 
     private PlayerCameraAdditionalTriggera _additionalTrigger;
 
@@ -27,12 +27,12 @@ public class PlayerCameraMoving : MonoBehaviour
 
     private void CameraMovingToPlayerCameraPosition()
     {
-        Vector3 TargetPosition = new Vector3(_player.position.x, _defaultMaxCameraPositionY, _player.position.z - 5);
+        Vector3 TargetPosition = new Vector3(_player.position.x, _defaultMaxCameraPositionY, _player.position.z - _distanceCameraToPlayerOnForward);
         transform.position = Vector3.Lerp(transform.position, TargetPosition, _cameraMovingToPlayerSpeed * Time.fixedDeltaTime);
     }
     private void CameraMovingToPlayerWithPlayerVisibleFalse()
     {
         Vector3 TargetPosition = new Vector3(_player.position.x, Mathf.Clamp(_player.position.y, _isTriggerMinCameraPositionY, _player.position.y), _player.position.z - 1);
-        transform.position = Vector3.Lerp(transform.position, TargetPosition, _cameraMovingToPlayerSpeed * Time.fixedDeltaTime);
+        transform.position = Vector3.Lerp(transform.position, TargetPosition, _cameraMovingToPlayerSpeed + 1 * Time.fixedDeltaTime);
     }
 }

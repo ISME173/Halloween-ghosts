@@ -13,24 +13,25 @@ public class PlayerWeaponFire : MonoBehaviour
     private PlayerAttackZone _playerAttackZone;
 
     private void Awake() => _playerAttackZone = FindAnyObjectByType<PlayerAttackZone>();
-    private void Start()
+    private void OnEnable()
     {
-        _weaponFire.Stop();
-        _weaponBulletsCasings.Stop();
+        _playerAttackZone.AddEnemyInList += ParticlesInGunPlay;
     }
+    private void OnDisable()
+    {
+        _playerAttackZone.AddEnemyInList -= ParticlesInGunPlay;
+    }
+    private void Start() => ParticlesInGunStop();
     private void FixedUpdate()
     {
         if (_playerAttackZone.ClosestEnemy != null)
         {
-            _weaponBulletsCasings.Play();
-            _weaponFire.Play();
             Shot();
         }
-        //else
-        //{
-        //    _weaponFire.Stop();
-        //    _weaponBulletsCasings.Stop();
-        //}
+        else
+        {
+            ParticlesInGunStop();
+        }
     }
     private void Shot()
     {
@@ -38,16 +39,28 @@ public class PlayerWeaponFire : MonoBehaviour
 
         Ray raycast = new Ray(_firePoint.position, _firePoint.forward);
 
-        RaycastHit hit;
-        if (Physics.Raycast(raycast, out hit, _fireDistance))
+        if (Physics.Raycast(raycast, out RaycastHit hit, _fireDistance))
         {
             if (hit.transform.TryGetComponent(out Enemy enemy))
             {
-                Debug.Log("Fire");
-                //_weaponFire.Play();
-                //_weaponBulletsCasings.Play();
                 enemy.TakeDamage(_fireDamage);
             }
+        }
+    }
+    private void ParticlesInGunPlay()
+    {
+        if (_weaponBulletsCasings.isPlaying == false && _weaponFire.isPlaying == false)
+        {
+            _weaponFire.Play();
+            _weaponBulletsCasings.Play();
+        }
+    }
+    private void ParticlesInGunStop()
+    {
+        if (_weaponBulletsCasings.isPlaying && _weaponFire.isPlaying)
+        {
+            _weaponFire.Stop();
+            _weaponBulletsCasings.Stop();
         }
     }
 }

@@ -4,16 +4,19 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent), typeof(Animator))]
 public class Ghost : Enemy
 {
-    [Space]
-    [SerializeField] private string _diedAnimatorParameterName;
+    [field: Header("Animator states"), Space]
+    [field: SerializeField] public string DiedAnimatorParameterName { get; private set; }
+    [field: SerializeField] public string IdleAnimatorParameterName { get; private set; }
+    [field: SerializeField] public string AngryAnimatorParameterName { get; private set; }
 
-    private void Awake()
-    {
-        InitializedInAwake();
-    }
+    
+
+    private void Awake() => InitializedInAwake();
+    private void Update() => DistanceToPlayer = Vector3.Distance(transform.position, _playerMoving.transform.position);
     protected override void Died()
     {
-        _animator.SetBool(_diedAnimatorParameterName, true);
+        _animator.SetBool(DiedAnimatorParameterName, true);
         Destroy(gameObject);
+        base.Died();
     }
 }

@@ -21,7 +21,10 @@ public class PlayerWeaponFire : MonoBehaviour
     {
         _playerAttackZone.AddEnemyInList -= ParticlesInGunPlay;
     }
-    private void Start() => ParticlesInGunStop();
+    private void Start()
+    {
+        ParticlesInGunStop();
+    }
     private void FixedUpdate()
     {
         if (_playerAttackZone.ClosestEnemy != null)

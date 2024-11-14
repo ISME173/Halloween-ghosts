@@ -40,7 +40,7 @@ public class PlayerInputManager : MonoBehaviour
         }
     }
 
-    public void AddListanerToFullScreenButton(UnityAction action)
+    public void AddListanerToFullScreenButtonOnClick(UnityAction action)
     {
         _fullScreenButton.onClick.AddListener(action);
     }

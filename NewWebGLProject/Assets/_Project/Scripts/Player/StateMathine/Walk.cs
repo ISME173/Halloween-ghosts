@@ -14,7 +14,7 @@ public class Walk : StateMachineBehaviour
     {
         if (_playerMoving.TargetVelosity.x == 0 && _playerMoving.TargetVelosity.z == 0)
         {
-            animator.SetBool(_playerAnimatorParametersManager.Idle, true);
+            animator.SetBool(_playerAnimatorParametersManager.IsIdle, true);
         }
     }
 }

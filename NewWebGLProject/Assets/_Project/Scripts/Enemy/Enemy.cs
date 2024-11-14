@@ -7,13 +7,13 @@ public abstract class Enemy : MonoBehaviour
     [Header("Enemy states"), Space]
 
     [SerializeField] protected int _maxHealth;
-    [SerializeField] protected int _attackDamage;
 
     protected float _health;
     protected NavMeshAgent _navMeshAgent;
     protected PlayerMoving _playerMoving;
     protected Animator _animator;
 
+    [field: SerializeField] public float AttackDamage { get; private set; }
     [field: SerializeField] public float IdleTime { get; private set; }
     [field: SerializeField] public float WalkingTime { get; private set; }
     [field: SerializeField] public float AngrySpeed { get; private set; }
@@ -22,6 +22,7 @@ public abstract class Enemy : MonoBehaviour
 
     public UnityEvent EnemyDestroy { get; protected set; }
     public float DistanceToPlayer { get; protected set; }
+    public Transform Player { get { return _playerMoving.transform; } }
 
     protected virtual void InitializedInAwake()
     {

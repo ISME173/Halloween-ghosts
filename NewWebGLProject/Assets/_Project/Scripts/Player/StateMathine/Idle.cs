@@ -14,7 +14,7 @@ public class Idle : StateMachineBehaviour
     {
         if (_playerMoving.TargetVelosity.x != 0 || _playerMoving.TargetVelosity.z != 0)
         {
-            animator.SetBool(_animatorParametersManager.Idle, false);
+            animator.SetBool(_animatorParametersManager.IsIdle, false);
         }
     }
 }

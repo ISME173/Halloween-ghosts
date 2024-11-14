@@ -13,6 +13,7 @@ public class PlayerAttackZone : MonoBehaviour
     public Enemy ClosestEnemy { get; private set; } = null;
 
     private void Awake() => GetComponent<Collider>().isTrigger = true;
+    private void Start() => GlobalStatesWhenPlayerDied.Instance.AddBehaviourInListToSetEnebledFalseWhenPlayerDied(this);
 
     private void OnTriggerEnter(Collider other)
     {

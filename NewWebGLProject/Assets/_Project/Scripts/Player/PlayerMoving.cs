@@ -16,6 +16,7 @@ public class PlayerMoving : MonoBehaviour
         _playerRigidbody = GetComponent<Rigidbody>();
         _playerAttackZone = FindAnyObjectByType<PlayerAttackZone>();
     }
+    private void Start() => GlobalStatesWhenPlayerDied.Instance.AddBehaviourInListToSetEnebledFalseWhenPlayerDied(this);
     private void FixedUpdate()
     {
         _playerRigidbody.velocity = new Vector3(_playerJoystick.Horizontal * _speed, _playerRigidbody.velocity.y, _playerJoystick.Vertical * _speed);

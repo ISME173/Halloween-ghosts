@@ -35,13 +35,11 @@ public class EnemyWalkingPoints : MonoBehaviour
         else
         {
             _instance = this;
-            DontDestroyOnLoad(gameObject);
         }
 
         Transform[] points = GetComponentsInChildren<Transform>();
         foreach (Transform t in points)
             _enemyWalkingPoints.Add(t);
-
     }
     public List<Transform> GetEnemyWalkingPoints()
     {

@@ -8,7 +8,6 @@ public class PlayerWeaponFire : MonoBehaviour
 
     [Header("Particles"), Space]
     [SerializeField] private ParticleSystem _weaponFire;
-    [SerializeField] private ParticleSystem _weaponBulletsCasings;
 
     private PlayerAttackZone _playerAttackZone;
 
@@ -20,21 +19,19 @@ public class PlayerWeaponFire : MonoBehaviour
     private void OnDisable()
     {
         _playerAttackZone.AddEnemyInList -= ParticlesInGunPlay;
+        _weaponFire.Stop();
     }
     private void Start()
     {
         ParticlesInGunStop();
+        GlobalStatesWhenPlayerDied.Instance.AddBehaviourInListToSetEnebledFalseWhenPlayerDied(this);
     }
     private void FixedUpdate()
     {
         if (_playerAttackZone.ClosestEnemy != null)
-        {
             Shot();
-        }
         else
-        {
             ParticlesInGunStop();
-        }
     }
     private void Shot()
     {
@@ -45,25 +42,17 @@ public class PlayerWeaponFire : MonoBehaviour
         if (Physics.Raycast(raycast, out RaycastHit hit, _fireDistance))
         {
             if (hit.transform.TryGetComponent(out Enemy enemy))
-            {
                 enemy.TakeDamage(_fireDamage);
-            }
         }
     }
     private void ParticlesInGunPlay()
     {
-        if (_weaponBulletsCasings.isPlaying == false && _weaponFire.isPlaying == false)
-        {
+        if (_weaponFire.isPlaying == false)
             _weaponFire.Play();
-            _weaponBulletsCasings.Play();
-        }
     }
     private void ParticlesInGunStop()
     {
-        if (_weaponBulletsCasings.isPlaying && _weaponFire.isPlaying)
-        {
+        if (_weaponFire.isPlaying)
             _weaponFire.Stop();
-            _weaponBulletsCasings.Stop();
-        }
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -5,14 +6,16 @@ using UnityEngine.UI;
 public class PlayerLifeManager : MonoBehaviour
 {
     [SerializeField] private float _maxHealth;
-    [SerializeField] private float _attackDamage;
     [SerializeField] private Slider _healthSlider;
     [SerializeField] private Camera _mainCamera;
 
     private Animator _animator;
     private PlayerAnimatorParametersManager _playerAnimatorParameters;
+    private Rigidbody _rigidbody;
+    private Collider _collider;
 
-    public UnityEvent PlayerDied { get; private set; }
+    private event Action PlayerDied;
+
     public UnityEvent PlayerTakeDamage { get; private set; }
     public float Health { get; private set; }
 
@@ -20,6 +23,8 @@ public class PlayerLifeManager : MonoBehaviour
     {
         _animator = GetComponent<Animator>();
         _playerAnimatorParameters = GetComponent<PlayerAnimatorParametersManager>();
+        _rigidbody = GetComponent<Rigidbody>();
+        _collider = GetComponent<Collider>();
     }
     private void Start()
     {
@@ -32,9 +37,7 @@ public class PlayerLifeManager : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.TryGetComponent(out Enemy enemy))
-        {
             TakeDamage(enemy.AttackDamage);
-        }
     }
     private void TakeDamage(float damage)
     {
@@ -54,6 +57,9 @@ public class PlayerLifeManager : MonoBehaviour
     }
     private void Died()
     {
+        _collider.enabled = false;
+        _rigidbody.isKinematic = true;
+
         _animator.SetBool(_playerAnimatorParameters.IsDied, true);
 
         if (PlayerDied != null)
@@ -63,4 +69,6 @@ public class PlayerLifeManager : MonoBehaviour
 
         enabled = false;
     }
+    public void AddActionToPlayerDiedEvent(Action action) => PlayerDied += action;
+    public void RemoveActionInPlayerDiedEvent(Action action) => PlayerDied -= action;
 }

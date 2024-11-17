@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
@@ -16,6 +15,7 @@ public abstract class Enemy : MonoBehaviour
     [Space]
     [SerializeField] protected EnemyAnyEffect _diedEffect;
     [SerializeField] protected bool _diedEffectIsActive = false;
+    [Space]
 
     protected float _health;
     protected NavMeshAgent _navMeshAgent;
@@ -25,25 +25,15 @@ public abstract class Enemy : MonoBehaviour
     protected Camera _mainCamera;
 
     [field: SerializeField] public float AttackDamage { get; private set; }
-    [field: SerializeField] public float AttackSpeed { get; private set; } = 1;
     [field: SerializeField] public float IdleTime { get; private set; }
     [field: SerializeField] public float WalkingTime { get; private set; }
     [field: SerializeField] public float AngrySpeed { get; private set; }
     [field: SerializeField] public float MovingSpeed { get; private set; }
     [field: SerializeField] public float DistanceToPlayerForAngry { get; private set; }
 
-    public UnityEvent EnemyDestroy { get; protected set; }
+    public UnityEvent<Enemy> EnemyDestroy;
     public float DistanceToPlayer { get; protected set; }
     public Transform Player { get { return _playerMoving.transform; } }
-
-    private IEnumerator HealthSliderLookAtToPlayer()
-    {
-        while (enabled)
-        {
-            _healthSlider.transform.parent.LookAt(_mainCamera.transform);
-            yield return null;
-        }
-    }
 
     protected virtual void InitializedInAwake()
     {
@@ -57,15 +47,18 @@ public abstract class Enemy : MonoBehaviour
         _animator = GetComponent<Animator>();
         _playerMoving = FindAnyObjectByType<PlayerMoving>();
 
-        _healthSliderLookAtToPlayer = StartCoroutine(HealthSliderLookAtToPlayer());
+        EnemyDestroy.AddListener(EnemySpawner.Instance.CheckCountEnabledEnemy);
+
+        if (transform.parent != null)
+            transform.SetParent(null);
     }
     protected virtual void Died()
     {
-        if (_diedEffectIsActive)
+        if (_diedEffectIsActive && _diedEffect != null)
             Instantiate(_diedEffect, transform.position, Quaternion.identity);
 
         if (EnemyDestroy != null)
-            EnemyDestroy.Invoke();
+            EnemyDestroy.Invoke(this);
 
         Destroy(gameObject);
     }

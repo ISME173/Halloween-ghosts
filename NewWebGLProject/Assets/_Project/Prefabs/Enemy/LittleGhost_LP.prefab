@@ -499,11 +499,12 @@ MonoBehaviour:
   _diedEffect: {fileID: 882088213768409557, guid: c6b0f5f5053f41a45ba8212440b78d8f, type: 3}
   _diedEffectIsActive: 1
   <AttackDamage>k__BackingField: 10
+  <AttackSpeed>k__BackingField: 1
   <IdleTime>k__BackingField: 5
   <WalkingTime>k__BackingField: 10
   <AngrySpeed>k__BackingField: 3
   <MovingSpeed>k__BackingField: 2
-  <DistanceToPlayerForAngry>k__BackingField: 5
+  <DistanceToPlayerForAngry>k__BackingField: 4
   <DiedAnimatorParameterName>k__BackingField: IsDied
   <IdleAnimatorParameterName>k__BackingField: IsIdle
   <AngryAnimatorParameterName>k__BackingField: IsAngry

@@ -10,7 +10,11 @@ public class Ghost : Enemy
     [field: SerializeField] public string AngryAnimatorParameterName { get; private set; }
  
     private void Awake() => InitializedInAwake();
-    private void Update() => DistanceToPlayer = Vector3.Distance(transform.position, _playerMoving.transform.position);
+    private void Update()
+    {
+        DistanceToPlayer = Vector3.Distance(transform.position, _playerMoving.transform.position);
+        _healthSlider.transform.LookAt(_mainCamera.transform);
+    }
     protected override void Died()
     {
         _animator.SetBool(DiedAnimatorParameterName, true);

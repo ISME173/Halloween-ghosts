@@ -49,7 +49,7 @@ public class PlayerLifeManager : MonoBehaviour
             if (PlayerTakeDamage != null)
                 PlayerTakeDamage.Invoke();
 
-            if (Health == 0)
+            if (Health <= 0)
             {
                 Died();
             }

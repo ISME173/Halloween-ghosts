@@ -10,6 +10,8 @@ public class GhostAngry : StateMachineBehaviour
     {
         _agent = animator.GetComponent<NavMeshAgent>();
         _ghost = animator.GetComponent<Ghost>();
+
+        _agent.speed = _ghost.AngrySpeed;
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

@@ -8,6 +8,7 @@ public class GhostWalking : StateMachineBehaviour
     private Ghost _ghost;
     private NavMeshAgent _agent;
     private float _time;
+    private float _walkingTime;
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -16,6 +17,9 @@ public class GhostWalking : StateMachineBehaviour
         _walkingPoints = EnemyWalkingPoints.Instance.GetEnemyWalkingPoints();
 
         _time = 0;
+        _agent.speed = _ghost.MovingSpeed;
+        _walkingTime = Random.Range(1, Mathf.Clamp(_ghost.WalkingTime, 2, _ghost.WalkingTime));
+;
         _agent.SetDestination(_walkingPoints[Random.Range(0, _walkingPoints.Count)].position);
     }
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -27,7 +31,7 @@ public class GhostWalking : StateMachineBehaviour
             animator.SetBool(_ghost.AngryAnimatorParameterName, true);
 
         _time += Time.deltaTime;
-        if (_time > _ghost.WalkingTime)
+        if (_time > _walkingTime)
             animator.SetBool(_ghost.IdleAnimatorParameterName, true);
     }
 }

@@ -5,16 +5,16 @@ using UnityEngine.UI;
 
 public class PlayerLifeManager : MonoBehaviour
 {
-    [SerializeField] private float _maxHealth;
     [SerializeField] private Slider _healthSlider;
     [SerializeField] private Camera _mainCamera;
 
+    private float _maxHealth;
     private Animator _animator;
     private PlayerAnimatorParametersManager _playerAnimatorParameters;
     private Rigidbody _rigidbody;
     private Collider _collider;
 
-    private event Action PlayerDied;
+    private UnityEvent PlayerDied = new UnityEvent();
 
     public UnityEvent PlayerTakeDamage { get; private set; }
     public float Health { get; private set; }
@@ -28,6 +28,8 @@ public class PlayerLifeManager : MonoBehaviour
     }
     private void Start()
     {
+        _maxHealth = PlayerStates.Instance.MaxHealth;
+
         Health = _maxHealth;
         _healthSlider.maxValue = Health;
         _healthSlider.value = Health;
@@ -69,6 +71,5 @@ public class PlayerLifeManager : MonoBehaviour
 
         enabled = false;
     }
-    public void AddActionToPlayerDiedEvent(Action action) => PlayerDied += action;
-    public void RemoveActionInPlayerDiedEvent(Action action) => PlayerDied -= action;
+    public void AddListenerToPlayerDiedUnnityEvent(UnityAction unityAction) => PlayerDied.AddListener(unityAction);
 }

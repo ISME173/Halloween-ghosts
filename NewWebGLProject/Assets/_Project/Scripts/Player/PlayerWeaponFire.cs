@@ -3,19 +3,16 @@ using UnityEngine;
 public class PlayerWeaponFire : MonoBehaviour
 {
     [SerializeField] private Transform _firePoint;
-    [SerializeField] private float _fireDistance;
-    [SerializeField] private int _fireDamage;
 
     [Header("Particles"), Space]
     [SerializeField] private ParticleSystem _weaponFire;
 
+    private float _fireDistance;
+    private int _fireDamage;
     private PlayerAttackZone _playerAttackZone;
 
     private void Awake() => _playerAttackZone = FindAnyObjectByType<PlayerAttackZone>();
-    private void OnEnable()
-    {
-        _playerAttackZone.AddEnemyInList += ParticlesInGunPlay;
-    }
+    private void OnEnable() => _playerAttackZone.AddEnemyInList += ParticlesInGunPlay;
     private void OnDisable()
     {
         _playerAttackZone.AddEnemyInList -= ParticlesInGunPlay;
@@ -25,6 +22,9 @@ public class PlayerWeaponFire : MonoBehaviour
     {
         ParticlesInGunStop();
         GlobalStatesWhenPlayerDied.Instance.AddBehaviourInListToSetEnebledFalseWhenPlayerDied(this);
+
+        _fireDistance = PlayerStates.Instance.AttackDistance;
+        _fireDamage = (int)PlayerStates.Instance.AttackDamage;
     }
     private void FixedUpdate()
     {

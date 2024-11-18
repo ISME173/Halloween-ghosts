@@ -39,14 +39,9 @@ public class WavesManager : MonoBehaviour
     private void Awake()
     {
         if (_instance != null && _instance != this)
-        {
             Destroy(gameObject);
-        }
         else
-        {
             _instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
     }
     private void Start()
     {
@@ -56,6 +51,12 @@ public class WavesManager : MonoBehaviour
     }
     private void WaveStart()
     {
+        if (EnemySpawner.Instance.WavesCount < _waveNumber)
+        {
+            Debug.Log("Waves end");
+            return;
+        }
+
         if (WaveStartEvent != null)
             WaveStartEvent.Invoke(_waveNumber);
 

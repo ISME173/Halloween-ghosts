@@ -39,8 +39,7 @@ public class GlobalStatesWhenPlayerDied : MonoBehaviour
 
         _playerLifeManager = FindAnyObjectByType<PlayerLifeManager>();
     }
-    private void Start() => _playerLifeManager.AddActionToPlayerDiedEvent(BehavioursInListSetEneblesFalse);
-    private void OnDisable() => _playerLifeManager.RemoveActionInPlayerDiedEvent(BehavioursInListSetEneblesFalse);
+    private void Start() => _playerLifeManager.AddListenerToPlayerDiedUnnityEvent(BehavioursInListSetEneblesFalse);
 
     private void BehavioursInListSetEneblesFalse()
     {

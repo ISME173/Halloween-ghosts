@@ -15,6 +15,8 @@ public class EnemySpawner : MonoBehaviour
     private UnityEvent EnemySpawnStart = new UnityEvent();
     private UnityEvent AllEnemyInSceneDestroyed = new UnityEvent();
 
+    public int WavesCount { get; private set; }
+
     private void Awake()
     {
         Instance = this;
@@ -27,6 +29,7 @@ public class EnemySpawner : MonoBehaviour
             for (int i = 0; i < enemySpawnStates.Length; i++)
                 _enemySpawnStates.Add(enemySpawnStates[i]);
         }
+        WavesCount = _enemySpawnStates.Count;
 
         WavesManager.Instance.AddListenerToWaveStartUnityEvent(SpawnEnemy);
     }

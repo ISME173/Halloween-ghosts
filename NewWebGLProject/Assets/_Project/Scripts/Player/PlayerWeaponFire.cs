@@ -17,6 +17,8 @@ public class PlayerWeaponFire : MonoBehaviour
     {
         _playerAttackZone.AddEnemyInList -= ParticlesInGunPlay;
         _weaponFire.Stop();
+
+        PlayerStates.Instance.AddListeerToUpgraidPlayerAnyStateUnityEvent(UpdateWeaponStates);
     }
     private void Start()
     {
@@ -32,6 +34,11 @@ public class PlayerWeaponFire : MonoBehaviour
             Shot();
         else
             ParticlesInGunStop();
+    }
+    private void UpdateWeaponStates()
+    {
+        _fireDamage = (int)PlayerStates.Instance.AttackDamage;
+        _fireDistance = PlayerStates.Instance.AttackDistance;
     }
     private void Shot()
     {

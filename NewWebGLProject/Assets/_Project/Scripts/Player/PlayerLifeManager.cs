@@ -25,6 +25,8 @@ public class PlayerLifeManager : MonoBehaviour
         _playerAnimatorParameters = GetComponent<PlayerAnimatorParametersManager>();
         _rigidbody = GetComponent<Rigidbody>();
         _collider = GetComponent<Collider>();
+
+        PlayerStates.Instance.AddListeerToUpgraidPlayerAnyStateUnityEvent(UpdateMaxHealthValue);
     }
     private void Start()
     {
@@ -40,6 +42,13 @@ public class PlayerLifeManager : MonoBehaviour
     {
         if (collision.gameObject.TryGetComponent(out Enemy enemy))
             TakeDamage(enemy.AttackDamage);
+    }
+    private void UpdateMaxHealthValue()
+    {
+        _maxHealth = PlayerStates.Instance.MaxHealth;
+        Health = _maxHealth;
+        _healthSlider.maxValue = _maxHealth;
+        _healthSlider.value = _maxHealth;
     }
     private void TakeDamage(float damage)
     {

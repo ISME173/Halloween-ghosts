@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerStates : MonoBehaviour
 {
@@ -9,6 +10,13 @@ public class PlayerStates : MonoBehaviour
 
 
     private static PlayerStates _instance;
+
+    private UnityEvent UpgraidPlayerAnyState = new UnityEvent();
+
+    public enum PlayerStatesToUpgraid
+    {
+        Attack_Damage, Max_Health, Moving_Speed, Attack_Distance
+    }
 
     public static PlayerStates Instance
     {
@@ -36,4 +44,27 @@ public class PlayerStates : MonoBehaviour
         else
             _instance = this;
     }
+
+    public void UpgraidAnyState(PlayerStatesToUpgraid playerStatesToUpgraid, float upgraidValue)
+    {
+        switch (playerStatesToUpgraid)
+        {
+            case PlayerStatesToUpgraid.Attack_Damage:
+                AttackDamage += upgraidValue;
+                break;
+            case PlayerStatesToUpgraid.Attack_Distance:
+                AttackDistance += upgraidValue;
+                break;
+            case PlayerStatesToUpgraid.Moving_Speed:
+                MovingSpeed += upgraidValue;
+                break;
+            case PlayerStatesToUpgraid.Max_Health:
+                MaxHealth += upgraidValue;
+                break;
+        }
+
+        if (UpgraidPlayerAnyState != null)
+            UpgraidPlayerAnyState.Invoke();
+    }
+    public void AddListeerToUpgraidPlayerAnyStateUnityEvent(UnityAction unityAction) => UpgraidPlayerAnyState.AddListener(unityAction);
 }

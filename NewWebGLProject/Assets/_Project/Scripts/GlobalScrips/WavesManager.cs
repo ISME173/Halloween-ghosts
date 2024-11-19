@@ -46,6 +46,7 @@ public class WavesManager : MonoBehaviour
     private void Start()
     {
         EnemySpawner.Instance.AddListenerToAllEnemyDestroyedUnityEvent(WaveEnd);
+        PlayerUpgraidsManager.Instance.AddListenerToDestroyUpgraidPanelEvent(WaveStart);
 
         WaveStart();
     }
@@ -72,18 +73,12 @@ public class WavesManager : MonoBehaviour
 
         _wavesInfoTextManager.MainText.text = _waveEndText;
         StartCoroutine(TextWaveInfoEnabled());
-        StartCoroutine(NextWave());
     }
     private IEnumerator TextWaveInfoEnabled()
     {
         _wavesInfoTextManager.TextEnabled();
         yield return new WaitForSeconds(_wavesTextAppearanceAnimTime);
         _wavesInfoTextManager.TextDisabled();
-    }
-    private IEnumerator NextWave()
-    {
-        yield return new WaitForSeconds(3);
-        WaveStart();
     }
 
     public void AddListenerToWaveStartUnityEvent(UnityAction<int> unityAction) => WaveStartEvent.AddListener(unityAction);

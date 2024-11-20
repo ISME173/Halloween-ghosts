@@ -24,6 +24,7 @@ public class PlayerMoving : MonoBehaviour
     private void Start()
     {
         GlobalStatesWhenPlayerDied.Instance.AddBehaviourInListToSetEnebledFalseWhenPlayerDied(this);
+        GlobalStatesWhenPlayerDied.Instance.AddGameObjectInListToSetActiveFalseWhenPlayerDied(_playerJoystick.gameObject);
         _speed = PlayerStates.Instance.MovingSpeed;
     }
     private void FixedUpdate()

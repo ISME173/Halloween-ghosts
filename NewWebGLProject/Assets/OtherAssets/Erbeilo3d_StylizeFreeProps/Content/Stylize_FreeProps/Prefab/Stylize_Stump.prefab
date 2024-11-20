@@ -156,7 +156,7 @@ GameObject:
   - component: {fileID: 6902205011453831207}
   - component: {fileID: 8624217540283874712}
   - component: {fileID: 5258610489944805436}
-  - component: {fileID: 7334866118375266548}
+  - component: {fileID: 5074373782440589613}
   m_Layer: 0
   m_Name: Stylize_Stump_LOD0
   m_TagString: Untagged
@@ -229,8 +229,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &7334866118375266548
-BoxCollider:
+--- !u!136 &5074373782440589613
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -247,8 +247,10 @@ BoxCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.3345495, y: 0.80058974, z: 1.2212572}
+  serializedVersion: 2
+  m_Radius: 0.6672748
+  m_Height: 0.80058974
+  m_Direction: 1
   m_Center: {x: 0.004244089, y: 0.252665, z: 0.012940854}
 --- !u!1 &7600656041598100118
 GameObject:

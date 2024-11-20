@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -80,5 +79,5 @@ public class PlayerLifeManager : MonoBehaviour
 
         enabled = false;
     }
-    public void AddListenerToPlayerDiedUnnityEvent(UnityAction unityAction) => PlayerDied.AddListener(unityAction);
+    public void AddListenerToPlayerDiedUnityEvent(UnityAction unityAction) => PlayerDied.AddListener(unityAction);
 }

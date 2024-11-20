@@ -47,6 +47,9 @@ public class PlayerStates : MonoBehaviour
 
     public void UpgraidAnyState(PlayerStatesToUpgraid playerStatesToUpgraid, float upgraidValue)
     {
+        Destroy(Instantiate(PlayerUpgraidsManager.Instance.PlayerUpgraidEffect, transform.position, Quaternion.identity),
+            PlayerUpgraidsManager.Instance.TimeToDestroyUpgraidEffect);
+
         switch (playerStatesToUpgraid)
         {
             case PlayerStatesToUpgraid.Attack_Damage:

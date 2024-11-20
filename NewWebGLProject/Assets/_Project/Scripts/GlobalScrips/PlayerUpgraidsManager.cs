@@ -8,6 +8,9 @@ public class PlayerUpgraidsManager : MonoBehaviour
     [SerializeField] private Transform _positionUpgraidPanelsPrefabs;
     [SerializeField] private Canvas _mainCanvas;
 
+    [field: SerializeField] public ParticleSystem PlayerUpgraidEffect { get; private set; }
+    [field: SerializeField] public float TimeToDestroyUpgraidEffect { get; private set; }
+
     private UnityEvent DestroyUpgraidPanel = new UnityEvent();
 
     private static PlayerUpgraidsManager _instance;

@@ -25,6 +25,10 @@ public class PlayerMoving : MonoBehaviour
     {
         GlobalStatesWhenPlayerDied.Instance.AddBehaviourInListToSetEnebledFalseWhenPlayerDied(this);
         GlobalStatesWhenPlayerDied.Instance.AddGameObjectInListToSetActiveFalseWhenPlayerDied(_playerJoystick.gameObject);
+
+        GlobalStatesIfPlayerWin.Instance.AddBehaviourInListToSetEnebledFalseWhenPlayerWin(this);
+        GlobalStatesIfPlayerWin.Instance.AddGameObjectInListToSetActiveFalseWhenPlayerWin(_playerJoystick.gameObject);
+
         _speed = PlayerStates.Instance.MovingSpeed;
     }
     private void FixedUpdate()
@@ -43,5 +47,9 @@ public class PlayerMoving : MonoBehaviour
     }
     private void UpdateMovingStates() => _speed = PlayerStates.Instance.MovingSpeed;
     private void IsMovingTrue() => _isMoving = true;
-    private void IsMovingFalse() => _isMoving = false;
+    private void IsMovingFalse()
+    {
+        _isMoving = false;
+        TargetVelosity = new Vector3(0, _playerRigidbody.velocity.y, 0);
+    }
 }

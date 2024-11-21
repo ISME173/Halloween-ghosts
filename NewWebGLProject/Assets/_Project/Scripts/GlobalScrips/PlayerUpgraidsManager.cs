@@ -11,6 +11,7 @@ public class PlayerUpgraidsManager : MonoBehaviour
     [field: SerializeField] public ParticleSystem PlayerUpgraidEffect { get; private set; }
     [field: SerializeField] public float TimeToDestroyUpgraidEffect { get; private set; }
 
+
     private UnityEvent DestroyUpgraidPanel = new UnityEvent();
 
     private static PlayerUpgraidsManager _instance;
@@ -46,6 +47,9 @@ public class PlayerUpgraidsManager : MonoBehaviour
 
     private void OpenUpgraidPanel()
     {
+        if (WavesManager.Instance.WavesNumber == EnemySpawner.Instance.WavesCount)
+            return;
+
         PlayerUpgraidsPanel playerUpgraidsPanel = Instantiate(_playerUpgraidsPanelsPrefabs[Random.Range(0, _playerUpgraidsPanelsPrefabs.Count)], _positionUpgraidPanelsPrefabs.position, Quaternion.identity);
         playerUpgraidsPanel.transform.SetParent(_mainCanvas.transform);
         playerUpgraidsPanel.transform.position = _positionUpgraidPanelsPrefabs.position;

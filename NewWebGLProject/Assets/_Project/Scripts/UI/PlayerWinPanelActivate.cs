@@ -1,9 +1,9 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Animator))]
-public class DiedPanelActivate : MonoBehaviour
+public class PlayerWinPanelActivate : MonoBehaviour
 {
     [SerializeField] private string _isActiveAnimatorParameter;
     [SerializeField] private Button _restartButton;
@@ -18,5 +18,4 @@ public class DiedPanelActivate : MonoBehaviour
 
     private void RestartScene() => SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     public void ActivatePanel() => _animator.SetBool(_isActiveAnimatorParameter, true);
-    
 }

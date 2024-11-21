@@ -73,9 +73,7 @@ public class PlayerLifeManager : MonoBehaviour
         _animator.SetBool(_playerAnimatorParameters.IsDied, true);
 
         if (PlayerDied != null)
-        {
             PlayerDied.Invoke();
-        }
 
         enabled = false;
     }

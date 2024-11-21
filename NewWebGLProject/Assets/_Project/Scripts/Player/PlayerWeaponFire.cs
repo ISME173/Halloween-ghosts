@@ -23,7 +23,9 @@ public class PlayerWeaponFire : MonoBehaviour
     private void Start()
     {
         ParticlesInGunStop();
+
         GlobalStatesWhenPlayerDied.Instance.AddBehaviourInListToSetEnebledFalseWhenPlayerDied(this);
+        GlobalStatesIfPlayerWin.Instance.AddBehaviourInListToSetEnebledFalseWhenPlayerWin(this);
 
         _fireDistance = PlayerStates.Instance.AttackDistance;
         _fireDamage = (int)PlayerStates.Instance.AttackDamage;

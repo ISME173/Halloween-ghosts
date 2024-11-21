@@ -8,14 +8,15 @@ public class WavesManager : MonoBehaviour
     [SerializeField] private float _wavesTextAppearanceAnimTime;
     [Space]
     [SerializeField] private string _waveEndText;
-    [SerializeField] private string _waveStartText;
+    //[SerializeField] private string _waveStartText;
 
     private static WavesManager _instance;
 
-    private int _waveNumber = 1;
+    public int WavesNumber { get; private set; } = 1;
 
     private UnityEvent<int> WaveStartEvent = new UnityEvent<int>();
     private UnityEvent WaveEndEvent = new UnityEvent();
+    private UnityEvent AllWavesEnd = new UnityEvent();
 
     public static WavesManager Instance
     {
@@ -52,16 +53,10 @@ public class WavesManager : MonoBehaviour
     }
     private void WaveStart()
     {
-        if (EnemySpawner.Instance.WavesCount < _waveNumber)
-        {
-            Debug.Log("Waves end");
-            return;
-        }
-
         if (WaveStartEvent != null)
-            WaveStartEvent.Invoke(_waveNumber);
+            WaveStartEvent.Invoke(WavesNumber);
 
-        _wavesInfoTextManager.MainText.text = _waveStartText;
+        _wavesInfoTextManager.MainText.text = $"Wave {WavesNumber} start!";
         StartCoroutine(TextWaveInfoEnabled());
     }
     private void WaveEnd()
@@ -69,10 +64,16 @@ public class WavesManager : MonoBehaviour
         if (WaveEndEvent != null)
             WaveEndEvent.Invoke();
 
-        _waveNumber++;
+        WavesNumber++;
 
         _wavesInfoTextManager.MainText.text = _waveEndText;
         StartCoroutine(TextWaveInfoEnabled());
+
+        if (EnemySpawner.Instance.WavesCount < WavesNumber)
+        {
+            if (AllWavesEnd != null)
+                AllWavesEnd.Invoke();
+        }
     }
     private IEnumerator TextWaveInfoEnabled()
     {
@@ -83,4 +84,5 @@ public class WavesManager : MonoBehaviour
 
     public void AddListenerToWaveStartUnityEvent(UnityAction<int> unityAction) => WaveStartEvent.AddListener(unityAction);
     public void AddListenerToWaveEndUnityEvent(UnityAction unityAction) => WaveEndEvent.AddListener(unityAction);
+    public void AddListenerToAllWavesEndUnityEvent(UnityAction unityAction) => AllWavesEnd.AddListener(unityAction);
 }

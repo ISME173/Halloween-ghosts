@@ -199,7 +199,7 @@ NavMeshAgent:
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
-  m_AngularSpeed: 250
+  m_AngularSpeed: 300
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
@@ -220,18 +220,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33a8cf99b72b51b44b360f7a8fe80017, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 320
+  _maxHealth: 400
   _healthSlider: {fileID: 5178651166828159434}
   _takeDamageEffect: {fileID: 0}
   _takeDamageEffectIsActive: 0
   _diedEffect: {fileID: 882088213768409557, guid: c6b0f5f5053f41a45ba8212440b78d8f, type: 3}
   _diedEffectIsActive: 1
-  <AttackDamage>k__BackingField: 20
+  <AttackDamage>k__BackingField: 30
   <IdleTime>k__BackingField: 6
   <WalkingTime>k__BackingField: 10
-  <AngrySpeed>k__BackingField: 3.5
+  <AngrySpeed>k__BackingField: 5
   <MovingSpeed>k__BackingField: 2
   <DistanceToPlayerForAngry>k__BackingField: 6
+  EnemyDestroy:
+    m_PersistentCalls:
+      m_Calls: []
   <DiedAnimatorParameterName>k__BackingField: IsDied
   <IdleAnimatorParameterName>k__BackingField: IsIdle
   <AngryAnimatorParameterName>k__BackingField: IsAngry

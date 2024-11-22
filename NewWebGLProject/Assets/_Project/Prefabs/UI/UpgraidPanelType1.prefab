@@ -547,7 +547,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _upgraidType: 2
-  _upgraidStrength: 0.5
+  _upgraidStrength: 0.7
 --- !u!1 &7640565246791062279
 GameObject:
   m_ObjectHideFlags: 0
@@ -683,7 +683,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _upgraidType: 0
-  _upgraidStrength: 10
+  _upgraidStrength: 15
 --- !u!1 &8786872054119829024
 GameObject:
   m_ObjectHideFlags: 0
@@ -819,4 +819,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _upgraidType: 1
-  _upgraidStrength: 30
+  _upgraidStrength: 40

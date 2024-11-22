@@ -155,8 +155,11 @@ MonoBehaviour:
   <IdleTime>k__BackingField: 7
   <WalkingTime>k__BackingField: 9
   <AngrySpeed>k__BackingField: 4
-  <MovingSpeed>k__BackingField: 3
-  <DistanceToPlayerForAngry>k__BackingField: 5
+  <MovingSpeed>k__BackingField: 2.5
+  <DistanceToPlayerForAngry>k__BackingField: 6
+  EnemyDestroy:
+    m_PersistentCalls:
+      m_Calls: []
   <DiedAnimatorParameterName>k__BackingField: IsDied
   <IdleAnimatorParameterName>k__BackingField: IsIdle
   <AngryAnimatorParameterName>k__BackingField: IsAngry

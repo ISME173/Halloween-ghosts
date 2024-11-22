@@ -15,7 +15,7 @@ public class PlayerStates : MonoBehaviour
 
     public enum PlayerStatesToUpgraid
     {
-        Attack_Damage, Max_Health, Moving_Speed, Attack_Distance
+        Attack_damage, Max_health, Moving_speed, Attack_distance
     }
 
     public static PlayerStates Instance
@@ -52,16 +52,16 @@ public class PlayerStates : MonoBehaviour
 
         switch (playerStatesToUpgraid)
         {
-            case PlayerStatesToUpgraid.Attack_Damage:
+            case PlayerStatesToUpgraid.Attack_damage:
                 AttackDamage += upgraidValue;
                 break;
-            case PlayerStatesToUpgraid.Attack_Distance:
+            case PlayerStatesToUpgraid.Attack_distance:
                 AttackDistance += upgraidValue;
                 break;
-            case PlayerStatesToUpgraid.Moving_Speed:
+            case PlayerStatesToUpgraid.Moving_speed:
                 MovingSpeed += upgraidValue;
                 break;
-            case PlayerStatesToUpgraid.Max_Health:
+            case PlayerStatesToUpgraid.Max_health:
                 MaxHealth += upgraidValue;
                 break;
         }

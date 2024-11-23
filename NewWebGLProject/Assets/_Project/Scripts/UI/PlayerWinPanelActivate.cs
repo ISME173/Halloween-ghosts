@@ -16,6 +16,10 @@ public class PlayerWinPanelActivate : MonoBehaviour
         _animator = GetComponent<Animator>();
     }
 
-    private void RestartScene() => SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    private void RestartScene()
+    {
+        SoundManager.Instance.PlayAnySound(SoundManager.Instance.AnySoundPlayAudioSource, SoundManager.Instance.ButtonClick);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
     public void ActivatePanel() => _animator.SetBool(_isActiveAnimatorParameter, true);
 }

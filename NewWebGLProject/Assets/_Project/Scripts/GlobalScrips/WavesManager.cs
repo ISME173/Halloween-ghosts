@@ -48,8 +48,9 @@ public class WavesManager : MonoBehaviour
     {
         EnemySpawner.Instance.AddListenerToAllEnemyDestroyedUnityEvent(WaveEnd);
         PlayerUpgraidsManager.Instance.AddListenerToDestroyUpgraidPanelEvent(WaveStart);
+        GameActivateManager.Instance.AddListenerToGameStartUnityEvet(WaveStart);
 
-        WaveStart();
+        //WaveStart();
     }
     private void WaveStart()
     {

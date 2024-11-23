@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class PlayerWeaponFire : MonoBehaviour
 {
     [SerializeField] private Transform _firePoint;
@@ -10,8 +11,13 @@ public class PlayerWeaponFire : MonoBehaviour
     private float _fireDistance;
     private int _fireDamage;
     private PlayerAttackZone _playerAttackZone;
+    private AudioSource _audioSource;
 
-    private void Awake() => _playerAttackZone = FindAnyObjectByType<PlayerAttackZone>();
+    private void Awake()
+    {
+        _playerAttackZone = FindAnyObjectByType<PlayerAttackZone>();
+        _audioSource = GetComponent<AudioSource>();
+    }
     private void OnEnable() => _playerAttackZone.AddEnemyInList += ParticlesInGunPlay;
     private void OnDisable()
     {
@@ -44,6 +50,9 @@ public class PlayerWeaponFire : MonoBehaviour
     }
     private void Shot()
     {
+        if (_audioSource.isPlaying == false)
+            SoundManager.Instance.PlayAnySound(_audioSource, SoundManager.Instance.PlayerGunShooting);
+
         _firePoint.LookAt(_playerAttackZone.ClosestEnemy.transform);
 
         Ray raycast = new Ray(_firePoint.position, _firePoint.forward);

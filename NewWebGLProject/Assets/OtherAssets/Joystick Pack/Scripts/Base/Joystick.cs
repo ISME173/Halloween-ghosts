@@ -38,6 +38,16 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
 
     private Vector2 input = Vector2.zero;
 
+    private void Awake()
+    {
+        GameActivateManager.Instance.AddListenerToGameStartUnityEvet(JoystickActivate);
+
+        GlobalStatesIfPlayerWin.Instance.AddGameObjectInListToSetActiveFalseWhenPlayerWin(gameObject);
+        GlobalStatesWhenPlayerDied.Instance.AddGameObjectInListToSetActiveFalseWhenPlayerDied(gameObject);
+
+        gameObject.gameObject.SetActive(false);
+    }
+    private void JoystickActivate() => gameObject.SetActive(true);
     protected virtual void Start()
     {
         HandleRange = handleRange;

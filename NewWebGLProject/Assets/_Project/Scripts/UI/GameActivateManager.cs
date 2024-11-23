@@ -35,13 +35,19 @@ public class GameActivateManager : MonoBehaviour
         else
             _instance = this;
     }
-    private void Start() => _gameActivatePanel.AddListerToButtonPlayClick(Play);
+    private void Start()
+    {
+        _gameActivatePanel.AddListerToButtonPlayClick(Play);
+        SoundManager.Instance.PlayAnySound(SoundManager.Instance.MusicAudioSource, SoundManager.Instance.MenuMusic);
+    }
     private void Play()
     {
+        SoundManager.Instance.PlayAnySound(SoundManager.Instance.MusicAudioSource, SoundManager.Instance.GameMusic);
+
         if (GameStart != null)
             GameStart.Invoke();
 
-        //_gameActivatePanel.Disable();
+        _gameActivatePanel.Disable();
     }
     public void AddListenerToGameStartUnityEvet(UnityAction unityAction) => GameStart.AddListener(unityAction);
 }

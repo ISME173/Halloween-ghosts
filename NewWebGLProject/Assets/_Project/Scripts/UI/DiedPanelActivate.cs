@@ -15,8 +15,15 @@ public class DiedPanelActivate : MonoBehaviour
         _restartButton.onClick.AddListener(RestartScene);
         _animator = GetComponent<Animator>();
     }
+    private void RestartScene()
+    {
+        SoundManager.Instance.PlayAnySound(SoundManager.Instance.AnySoundPlayAudioSource, SoundManager.Instance.ButtonClick);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+    public void ActivatePanel()
+    {
+        _animator.SetBool(_isActiveAnimatorParameter, true);
+        SoundManager.Instance.PlayAnySound(SoundManager.Instance.MusicAudioSource, SoundManager.Instance.GameoverMusic);
+    }
 
-    private void RestartScene() => SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    public void ActivatePanel() => _animator.SetBool(_isActiveAnimatorParameter, true);
-    
 }

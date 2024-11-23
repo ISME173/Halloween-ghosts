@@ -44,7 +44,7 @@ public class PlayerAttackZone : MonoBehaviour
     }
     private void GetClosestEnemyInAttackZone()
     {
-        if (_enemyInAttackZone.Count > 0)
+        if (_enemyInAttackZone.Count > 0 && _enemyInAttackZone != null)
         {
             if (_enemyInAttackZone.First() == null)
                 _enemyInAttackZone.Remove(_enemyInAttackZone.First());

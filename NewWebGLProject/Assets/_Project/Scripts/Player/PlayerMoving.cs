@@ -20,14 +20,14 @@ public class PlayerMoving : MonoBehaviour
         PlayerStates.Instance.AddListeerToUpgraidPlayerAnyStateUnityEvent(UpdateMovingStates);
         PlayerUpgraidsManager.Instance.AddListenerToDestroyUpgraidPanelEvent(IsMovingTrue);
         WavesManager.Instance.AddListenerToWaveEndUnityEvent(IsMovingFalse);
+        GameActivateManager.Instance.AddListenerToGameStartUnityEvet(IsMovingTrue);
     }
     private void Start()
     {
-        GlobalStatesWhenPlayerDied.Instance.AddBehaviourInListToSetEnebledFalseWhenPlayerDied(this);
-        GlobalStatesWhenPlayerDied.Instance.AddGameObjectInListToSetActiveFalseWhenPlayerDied(_playerJoystick.gameObject);
+        IsMovingFalse();
 
+        GlobalStatesWhenPlayerDied.Instance.AddBehaviourInListToSetEnebledFalseWhenPlayerDied(this);
         GlobalStatesIfPlayerWin.Instance.AddBehaviourInListToSetEnebledFalseWhenPlayerWin(this);
-        GlobalStatesIfPlayerWin.Instance.AddGameObjectInListToSetActiveFalseWhenPlayerWin(_playerJoystick.gameObject);
 
         _speed = PlayerStates.Instance.MovingSpeed;
     }

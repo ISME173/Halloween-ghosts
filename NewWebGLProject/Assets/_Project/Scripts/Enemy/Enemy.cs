@@ -54,6 +54,8 @@ public abstract class Enemy : MonoBehaviour
     }
     protected virtual void Died()
     {
+        SoundManager.Instance.PlayAnySound(SoundManager.Instance.AnySoundPlayAudioSource, SoundManager.Instance.EnemyDied);
+
         if (_diedEffectIsActive && _diedEffect != null)
             Instantiate(_diedEffect, transform.position, Quaternion.identity);
 

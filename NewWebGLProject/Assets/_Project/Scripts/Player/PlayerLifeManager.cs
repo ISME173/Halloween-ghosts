@@ -6,12 +6,14 @@ public class PlayerLifeManager : MonoBehaviour
 {
     [SerializeField] private Slider _healthSlider;
     [SerializeField] private Camera _mainCamera;
+    [SerializeField] private TakeDamageEffectPanel _takeDamageEffectPanel;
 
     private float _maxHealth;
     private Animator _animator;
     private PlayerAnimatorParametersManager _playerAnimatorParameters;
     private Rigidbody _rigidbody;
     private Collider _collider;
+    private AudioSource _audioSource;
 
     private UnityEvent PlayerDied = new UnityEvent();
 
@@ -20,6 +22,7 @@ public class PlayerLifeManager : MonoBehaviour
 
     private void Awake()
     {
+        _audioSource = GetComponentInChildren<AudioSource>();
         _animator = GetComponent<Animator>();
         _playerAnimatorParameters = GetComponent<PlayerAnimatorParametersManager>();
         _rigidbody = GetComponent<Rigidbody>();
@@ -53,6 +56,11 @@ public class PlayerLifeManager : MonoBehaviour
     {
         if (Health > 0)
         {
+            _takeDamageEffectPanel.DisableEffect();
+            _takeDamageEffectPanel.ActivateEffect();
+
+            SoundManager.Instance.PlayAnySound(_audioSource, SoundManager.Instance.PlayerTakeDamage);
+
             Health -= Mathf.Clamp(damage, 0, _maxHealth);
             _healthSlider.value = Health;
 
@@ -60,9 +68,7 @@ public class PlayerLifeManager : MonoBehaviour
                 PlayerTakeDamage.Invoke();
 
             if (Health <= 0)
-            {
                 Died();
-            }
         }
     }
     private void Died()

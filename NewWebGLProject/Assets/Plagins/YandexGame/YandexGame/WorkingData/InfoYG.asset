@@ -16,7 +16,7 @@ MonoBehaviour:
   playerPhotoSize: 0
   autoGameReadyAPI: 1
   playerInfoSimulation:
-    authorized: 1
+    authorized: 0
     isMobile: 0
     language: ru
     name: Player this
@@ -32,7 +32,7 @@ MonoBehaviour:
   durationOfAdSimulation: 0.5
   loadAdWithDelaySimulation: 0
   testErrorOfRewardedAdsInEditor: 0
-  saveCloud: 1
+  saveCloud: 0
   flush: 0
   localSaveSync: 1
   saveCloudInterval: 5
@@ -40,7 +40,7 @@ MonoBehaviour:
   quitGameParameters:
     objectName: YandexGame
     methodName: _SaveProgress
-  leaderboardEnable: 1
+  leaderboardEnable: 0
   saveScoreAnonymousPlayers: 1
   leaderboardSimulation:
   - technoName: advanced
@@ -304,7 +304,7 @@ MonoBehaviour:
     consumed: 1
   metricaEnable: 0
   metricaCounterID: 0
-  debug: 1
+  debug: 0
   archivingBuild: 1
   logoImageFormat: 1
   backgroundImageFormat: 3

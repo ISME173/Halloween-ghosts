@@ -14,8 +14,6 @@ public class UpgraidAnyState : MonoBehaviour
     private void Awake()
     {
         _upgraidButton = GetComponent<Button>();
-        _upgraidButton.GetComponentInChildren<Text>().text = _upgraidType.ToString();
-
         _upgraidButton.onClick.AddListener(UpgraidButtonClickUnityEventInvoke);
     }
     private void UpgraidButtonClickUnityEventInvoke()

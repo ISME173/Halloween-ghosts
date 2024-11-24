@@ -14,6 +14,11 @@ public class PlayerUpgraidsPanel : MonoBehaviour
         for (int i = 0; i < _upgraidButtons.Count; i++)
             _upgraidButtons[i].AddListenerToUpgraidButtonClick(UpgraidPlayerStateWithButtonType);
     }
+    private void OnDestroy()
+    {
+        if (DestroyUpgraidPanel != null)
+            DestroyUpgraidPanel.Invoke();
+    }
 
     private void UpgraidPlayerStateWithButtonType(PlayerStates.PlayerStatesToUpgraid playerStatesToUpgraid, float upgraidStrenght)
     {
@@ -24,10 +29,4 @@ public class PlayerUpgraidsPanel : MonoBehaviour
 
     public void AddListenerToUpgraidPlayerStateUnityEvent(UnityAction<PlayerStates.PlayerStatesToUpgraid, float> unityAction) => UpgraidPlayerState.AddListener(unityAction);
     public void AddListenerToDestroyUpgraidPanelUnityEvent(UnityAction unityAction) => DestroyUpgraidPanel.AddListener(unityAction);
-
-    private void OnDestroy()
-    {
-        if (DestroyUpgraidPanel != null)
-            DestroyUpgraidPanel.Invoke();
-    }
 }

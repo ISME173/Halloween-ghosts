@@ -1265,7 +1265,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHealth: 600
-  _healthSlider: {fileID: 4239894555544832796}
+  HealthSlider: {fileID: 4239894555544832796}
   _takeDamageEffect: {fileID: 0}
   _takeDamageEffectIsActive: 0
   _diedEffect: {fileID: 882088213768409557, guid: c6b0f5f5053f41a45ba8212440b78d8f, type: 3}

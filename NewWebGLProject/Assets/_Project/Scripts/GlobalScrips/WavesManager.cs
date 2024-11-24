@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -6,9 +6,6 @@ public class WavesManager : MonoBehaviour
 {
     [SerializeField] private WavesInfoTextManager _wavesInfoTextManager;
     [SerializeField] private float _wavesTextAppearanceAnimTime;
-    [Space]
-    [SerializeField] private string _waveEndText;
-    //[SerializeField] private string _waveStartText;
 
     private static WavesManager _instance;
 
@@ -49,15 +46,12 @@ public class WavesManager : MonoBehaviour
         EnemySpawner.Instance.AddListenerToAllEnemyDestroyedUnityEvent(WaveEnd);
         PlayerUpgraidsManager.Instance.AddListenerToDestroyUpgraidPanelEvent(WaveStart);
         GameActivateManager.Instance.AddListenerToGameStartUnityEvet(WaveStart);
-
-        //WaveStart();
     }
     private void WaveStart()
     {
         if (WaveStartEvent != null)
             WaveStartEvent.Invoke(WavesNumber);
 
-        _wavesInfoTextManager.MainText.text = $"Wave {WavesNumber} start!";
         StartCoroutine(TextWaveInfoEnabled());
     }
     private void WaveEnd()
@@ -67,7 +61,6 @@ public class WavesManager : MonoBehaviour
 
         WavesNumber++;
 
-        _wavesInfoTextManager.MainText.text = _waveEndText;
         StartCoroutine(TextWaveInfoEnabled());
 
         if (EnemySpawner.Instance.WavesCount < WavesNumber)

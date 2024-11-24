@@ -6,6 +6,7 @@ public class SoundManager : MonoBehaviour
     [field: SerializeField] public AudioClip ButtonClick { get; private set; }
     [field: SerializeField] public AudioClip EnemyDied { get; private set; }
     [field: SerializeField] public AudioClip PlayerGunShooting { get; private set; }
+    [field: SerializeField] public AudioClip PlayerTakeDamage { get; private set; }
 
     [field: Header("Musics"), Space]
     [field: SerializeField] public AudioClip MenuMusic { get; private set; }
@@ -44,6 +45,7 @@ public class SoundManager : MonoBehaviour
         else
             _instance = this;
     }
+
     public void PlayAnySound(AudioSource audioSource, AudioClip audioClip)
     {
         if (audioSource != null && audioClip != null)

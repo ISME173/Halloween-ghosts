@@ -33,7 +33,7 @@ public abstract class Enemy : MonoBehaviour
 
     public UnityEvent<Enemy> EnemyDestroy;
     public float DistanceToPlayer { get; protected set; }
-    public Transform Player { get { return PlayerMoving.transform; } }
+    public Transform Player { get; private set; }
 
     protected virtual void InitializedInAwake()
     {
@@ -46,6 +46,8 @@ public abstract class Enemy : MonoBehaviour
         NavMeshAgent = GetComponent<NavMeshAgent>();
         Animator = GetComponent<Animator>();
         PlayerMoving = FindAnyObjectByType<PlayerMoving>();
+
+        Player = PlayerMoving.transform;
 
         EnemyDestroy.AddListener(EnemySpawner.Instance.CheckCountEnabledEnemy);
 

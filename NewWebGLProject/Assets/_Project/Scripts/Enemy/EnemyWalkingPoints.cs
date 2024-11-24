@@ -29,18 +29,15 @@ public class EnemyWalkingPoints : MonoBehaviour
     private void Awake()
     {
         if (_instance != null && _instance != this)
-        {
             Destroy(gameObject);
-        }
         else
-        {
             _instance = this;
-        }
 
         Transform[] points = GetComponentsInChildren<Transform>();
         foreach (Transform t in points)
             _enemyWalkingPoints.Add(t);
     }
+
     public List<Transform> GetEnemyWalkingPoints()
     {
         return _enemyWalkingPoints;

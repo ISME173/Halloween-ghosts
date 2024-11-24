@@ -4,7 +4,9 @@ using UnityEngine.UI;
 
 public class UserInputManager : MonoBehaviour
 {
-    [SerializeField] private Button _fullScreenButton;
+    [field: SerializeField] public Button FullScreenButton { get; private set; }
+    [field: SerializeField] public Camera MainCamera { get; private set; }
+    [field: SerializeField] public Canvas MainCanvas { get; private set; }
 
     private static UserInputManager _instance;
 
@@ -37,6 +39,6 @@ public class UserInputManager : MonoBehaviour
 
     public void AddListanerToFullScreenButtonOnClick(UnityAction action)
     {
-        _fullScreenButton.onClick.AddListener(action);
+        FullScreenButton.onClick.AddListener(action);
     }
 }

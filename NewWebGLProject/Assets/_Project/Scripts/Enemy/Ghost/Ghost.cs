@@ -12,12 +12,12 @@ public class Ghost : Enemy
     private void Awake() => InitializedInAwake();
     private void Update()
     {
-        DistanceToPlayer = Vector3.Distance(transform.position, _playerMoving.transform.position);
-        _healthSlider.transform.LookAt(_mainCamera.transform);
+        DistanceToPlayer = Vector3.Distance(transform.position, PlayerMoving.transform.position);
+        HealthSlider.transform.LookAt(MainCamera.transform);
     }
     protected override void Died()
     {
-        _animator.SetBool(DiedAnimatorParameterName, true);
+        Animator.SetBool(DiedAnimatorParameterName, true);
         base.Died();
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
+using YG;
 
 public class WavesManager : MonoBehaviour
 {
@@ -62,6 +63,8 @@ public class WavesManager : MonoBehaviour
         WavesNumber++;
 
         StartCoroutine(TextWaveInfoEnabled());
+
+        YandexGame.FullscreenShow();
 
         if (EnemySpawner.Instance.WavesCount < WavesNumber)
         {

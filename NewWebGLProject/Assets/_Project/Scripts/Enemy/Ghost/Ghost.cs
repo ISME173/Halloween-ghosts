@@ -10,6 +10,11 @@ public class Ghost : Enemy
     [field: SerializeField] public string AngryAnimatorParameterName { get; private set; }
  
     private void Awake() => InitializedInAwake();
+    private void Start()
+    {
+        if (_spawnEffectIsActive && _spawnEffect != null)
+            Instantiate(_spawnEffect, transform.position, Quaternion.identity);
+    }
     private void Update()
     {
         DistanceToPlayer = Vector3.Distance(transform.position, PlayerMoving.transform.position);

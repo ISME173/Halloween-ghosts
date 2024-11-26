@@ -16,6 +16,9 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] protected EnemyAnyEffect _diedEffect;
     [SerializeField] protected bool _diedEffectIsActive = false;
     [Space]
+    [SerializeField] protected EnemyAnyEffect _spawnEffect;
+    [SerializeField] protected bool _spawnEffectIsActive = false;
+    [Space]
 
     protected float Health;
     protected NavMeshAgent NavMeshAgent;

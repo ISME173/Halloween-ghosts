@@ -565,6 +565,8 @@ MonoBehaviour:
   _takeDamageEffectIsActive: 0
   _diedEffect: {fileID: 882088213768409557, guid: c6b0f5f5053f41a45ba8212440b78d8f, type: 3}
   _diedEffectIsActive: 1
+  _spawnEffect: {fileID: 2552267846215970570, guid: ab53373379ecb394eb6c82fd0694da3c, type: 3}
+  _spawnEffectIsActive: 1
   <AttackDamage>k__BackingField: 25
   <IdleTime>k__BackingField: 8
   <WalkingTime>k__BackingField: 12

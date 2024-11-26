@@ -24,7 +24,8 @@ public class PlayerUpgraidsPanel : MonoBehaviour
     {
         SoundManager.Instance.PlayAnySound(SoundManager.Instance.AnySoundPlayAudioSource, SoundManager.Instance.ButtonClick);
         PlayerStates.Instance.UpgraidAnyState(playerStatesToUpgraid, upgraidStrenght);
-        Destroy(gameObject);
+        gameObject.SetActive(false);
+        Destroy(gameObject, 0.3f);
     }
 
     public void AddListenerToUpgraidPlayerStateUnityEvent(UnityAction<PlayerStates.PlayerStatesToUpgraid, float> unityAction) => UpgraidPlayerState.AddListener(unityAction);

@@ -1,10 +1,7 @@
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.UI;
 
 public class UserInputManager : MonoBehaviour
 {
-    [field: SerializeField] public Button FullScreenButton { get; private set; }
     [field: SerializeField] public Camera MainCamera { get; private set; }
     [field: SerializeField] public Canvas MainCanvas { get; private set; }
 
@@ -37,8 +34,5 @@ public class UserInputManager : MonoBehaviour
             _instance = this;
     }
 
-    public void AddListanerToFullScreenButtonOnClick(UnityAction action)
-    {
-        FullScreenButton.onClick.AddListener(action);
-    }
+    // можно дописать нужный функционал
 }

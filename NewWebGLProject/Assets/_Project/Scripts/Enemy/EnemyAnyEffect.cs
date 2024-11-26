@@ -5,12 +5,12 @@ public class EnemyAnyEffect : MonoBehaviour
 {
     [SerializeField] private float _timeBeforeStopEffect = 1;
 
-    private ParticleSystem _bloodEffect;
+    private ParticleSystem _anyEffect;
 
-    private void Awake() => _bloodEffect = GetComponent<ParticleSystem>();
+    private void Awake() => _anyEffect = GetComponent<ParticleSystem>();
     private void Start()
     {
-        _bloodEffect.Play();
+        _anyEffect.Play();
         Destroy(gameObject, _timeBeforeStopEffect);
     }
 }

@@ -20,7 +20,7 @@ public class PlayerCameraMoving : MonoBehaviour
 
         transform.position = _startCameraPositionOnPlayer.position;
     }
-    private void Update()
+    private void LateUpdate()
     {
         if (_additionalTrigger.IsTriggerEnter == false)
             CameraMovingToPlayerCameraPosition();

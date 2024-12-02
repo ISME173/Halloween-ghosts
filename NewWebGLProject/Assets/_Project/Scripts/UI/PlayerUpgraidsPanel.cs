@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using YG;
 
 public class PlayerUpgraidsPanel : MonoBehaviour
 {
@@ -26,6 +27,8 @@ public class PlayerUpgraidsPanel : MonoBehaviour
         PlayerStates.Instance.UpgraidAnyState(playerStatesToUpgraid, upgraidStrenght);
         gameObject.SetActive(false);
         Destroy(gameObject, 0.3f);
+
+        YandexGame.FullscreenShow();
     }
 
     public void AddListenerToUpgraidPlayerStateUnityEvent(UnityAction<PlayerStates.PlayerStatesToUpgraid, float> unityAction) => UpgraidPlayerState.AddListener(unityAction);

@@ -24,7 +24,7 @@ public class PlayerWeaponFire : MonoBehaviour
         _playerAttackZone.AddEnemyInList -= ParticlesInGunPlay;
         _weaponFire.Stop();
 
-        PlayerStates.Instance.AddListeerToUpgraidPlayerAnyStateUnityEvent(UpdateWeaponStates);
+        PlayerStates.Instance.AddListenerToUpgraidPlayerAnyStateUnityEvent(UpdateWeaponStates);
     }
     private void Start()
     {

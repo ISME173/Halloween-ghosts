@@ -17,7 +17,7 @@ public class PlayerMoving : MonoBehaviour
         _playerRigidbody = GetComponent<Rigidbody>();
         _playerAttackZone = FindAnyObjectByType<PlayerAttackZone>();
 
-        PlayerStates.Instance.AddListeerToUpgraidPlayerAnyStateUnityEvent(UpdateMovingStates);
+        PlayerStates.Instance.AddListenerToUpgraidPlayerAnyStateUnityEvent(UpdateMovingStates);
         PlayerUpgraidsManager.Instance.AddListenerToDestroyUpgraidPanelEvent(IsMovingTrue);
         WavesManager.Instance.AddListenerToWaveEndUnityEvent(IsMovingFalse);
         GameActivateManager.Instance.AddListenerToGameStartUnityEvet(IsMovingTrue);

@@ -28,7 +28,7 @@ public class PlayerLifeManager : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody>();
         _collider = GetComponent<Collider>();
 
-        PlayerStates.Instance.AddListeerToUpgraidPlayerAnyStateUnityEvent(UpdateMaxHealthValue);
+        PlayerStates.Instance.AddListenerToUpgraidPlayerAnyStateUnityEvent(UpdateMaxHealthValue);
     }
     private void Start()
     {

@@ -7,6 +7,7 @@ public class SoundManager : MonoBehaviour
     [field: SerializeField] public AudioClip EnemyDied { get; private set; }
     [field: SerializeField] public AudioClip PlayerGunShooting { get; private set; }
     [field: SerializeField] public AudioClip PlayerTakeDamage { get; private set; }
+    [field: SerializeField] public AudioClip PlayerUpgraid { get; private set; }
 
     [field: Header("Musics"), Space]
     [field: SerializeField] public AudioClip MenuMusic { get; private set; }

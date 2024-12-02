@@ -1482,8 +1482,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7196976996592463857}
-  - component: {fileID: 8437594068190629881}
-  - component: {fileID: 4681266914647560084}
   m_Layer: 0
   m_Name: RoadRotate
   m_TagString: Untagged
@@ -1524,48 +1522,6 @@ Transform:
   - {fileID: 3231687574988795599}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &8437594068190629881
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6195139037353694555}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Size: {x: 9.993148, y: 0.11320317, z: 8.012967}
-  m_Center: {x: -0.09235144, y: 0.1483984, z: 0.60225534}
---- !u!65 &4681266914647560084
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6195139037353694555}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Size: {x: 7.997225, y: 0.09717071, z: 1.9723787}
-  m_Center: {x: -1.0940323, y: 0.14679313, z: -4.398174}
 --- !u!1 &6199064999915559861
 GameObject:
   m_ObjectHideFlags: 0

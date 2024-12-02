@@ -64,8 +64,6 @@ public class WavesManager : MonoBehaviour
 
         StartCoroutine(TextWaveInfoEnabled());
 
-        YandexGame.FullscreenShow();
-
         if (EnemySpawner.Instance.WavesCount < WavesNumber)
         {
             if (AllWavesEnd != null)

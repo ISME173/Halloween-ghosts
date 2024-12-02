@@ -50,6 +50,8 @@ public class PlayerStates : MonoBehaviour
         Destroy(Instantiate(PlayerUpgraidsManager.Instance.PlayerUpgraidEffect, transform.position, Quaternion.identity),
             PlayerUpgraidsManager.Instance.TimeToDestroyUpgraidEffect);
 
+        SoundManager.Instance.PlayAnySound(SoundManager.Instance.AnySoundPlayAudioSource, SoundManager.Instance.PlayerUpgraid);
+
         switch (playerStatesToUpgraid)
         {
             case PlayerStatesToUpgraid.Attack_damage:
@@ -69,5 +71,5 @@ public class PlayerStates : MonoBehaviour
         if (UpgraidPlayerAnyState != null)
             UpgraidPlayerAnyState.Invoke();
     }
-    public void AddListeerToUpgraidPlayerAnyStateUnityEvent(UnityAction unityAction) => UpgraidPlayerAnyState.AddListener(unityAction);
+    public void AddListenerToUpgraidPlayerAnyStateUnityEvent(UnityAction unityAction) => UpgraidPlayerAnyState.AddListener(unityAction);
 }
